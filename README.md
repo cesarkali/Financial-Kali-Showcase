@@ -1,65 +1,72 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=slice&color=ff0000&height=200&section=header&text=Financial%20Kali&fontSize=80&fontAlignY=35&animation=twinkling&desc=SaaS%20de%20Gestão%20Financeira%20com%20IA%20Preditiva&descAlignY=55&descAlign=50&fontColor=ffffff&reversal=true"/>
+  <img src="https://capsule-render.vercel.app/api?type=slice&color=0:1a0000,100:ff0000&height=200&section=header&text=Financial%20Kali&fontSize=72&fontAlignY=35&desc=Gest%C3%A3o%20financeira%20com%20IA%2C%20na%20web%20e%20no%20Android&descSize=18&descAlignY=58&fontColor=ffffff&reversal=true" alt="Financial Kali"/>
+
+  <a href="https://www.caliberda.com.br/kali"><img src="https://img.shields.io/badge/Acessar_a_plataforma-ff0000?style=for-the-badge&logo=vercel&logoColor=white" alt="Acessar a plataforma"></a>
+
+  ![Versão](https://img.shields.io/badge/vers%C3%A3o-4.1.0-ff0000?style=flat-square)
+  ![Plataformas](https://img.shields.io/badge/plataformas-Web%20%C2%B7%20Android-1f1f1f?style=flat-square)
+  ![React](https://img.shields.io/badge/React-19-1f1f1f?style=flat-square&logo=react)
+  ![React Native](https://img.shields.io/badge/React%20Native-0.81%20%C2%B7%20Expo%2054-1f1f1f?style=flat-square&logo=expo)
+  ![Firebase](https://img.shields.io/badge/Firebase-Firestore%20%C2%B7%20Auth-1f1f1f?style=flat-square&logo=firebase)
 </div>
 
-<div align="center">
-  <a href="https://caliberda.com.br/kali" target="_blank">
-    <img src="https://img.shields.io/badge/Acessar_Plataforma-ff0000?style=for-the-badge&logo=vercel&logoColor=black" alt="Acessar Plataforma">
-  </a>
-</div>
-
-<br>
-
-> 🔒 **Nota Executiva de Arquitetura:** O código-fonte deste SaaS é **privado** por envolver propriedade intelectual, integrações comerciais proprietárias de IA e arquitetura Multi-Tenant de dados sensíveis. Este repositório atua como uma vitrine arquitetural e de engenharia de produto. 
+> 🔒 **Código privado.** O Financial Kali lida com dados financeiros de pessoas e empresas, então o código-fonte não é público. Este repositório é a vitrine do produto: o que ele faz, como foi construído e as decisões de engenharia por trás.
 
 ---
 
-## 💎 Visão do Produto
+## 💎 O produto
 
-**Financial Kali v3.0** é um ecossistema B2B/B2C de gestão financeira e patrimonial de alta performance. Projetado com uma estética "Obsidian Dark" voltada para redução de fadiga visual (Frictionless UX), o sistema entrega visibilidade total, conciliação em massa e privacidade absoluta sobre o fluxo de caixa.
+O **Financial Kali** é um sistema de gestão financeira pessoal e empresarial com um assistente de IA, o **Finn**, que entende voz, texto e imagens. Funciona no navegador e num **app Android nativo**, com os dados sincronizados em tempo real entre os dois.
 
-A plataforma opera de forma híbrida e ininterrupta através de um **Web App (React 19)** e um **App Android Nativo (React Native)**, garantindo sincronização em tempo real.
+O visual "Obsidian Dark" foi pensado para uso diário prolongado: fundo escuro, números em fonte monoespaçada para leitura financeira e animações discretas.
+
+## 🚀 O que ele faz
+
+### 🤖 Finn, o assistente de IA
+- **Voz:** fale o lançamento ("gastei 45 reais no mercado ontem") e ele é transcrito e categorizado.
+- **Imagens:** envie a foto de um comprovante ou nota; anexos sem relação com finanças são recusados.
+- **Conversas isoladas:** cada conversa tem o próprio histórico, sem misturar sessões nem bases.
+- **Alta disponibilidade:** várias chaves de API se revezam, e outro provedor assume se um falhar.
+
+### 🏢 Várias bases, um login
+- Contas pessoais, de empresas e de projetos em **bases separadas**, cada uma com a própria identidade visual (logotipo e cores).
+- Escolha da base no login para quem administra mais de um negócio.
+- Categorias e regras copiadas de uma base para outra com um clique.
+
+### 📊 Lançamentos e análise
+- Histórico em três visões: **a pagar**, **a receber** e **pago**.
+- **Baixa em lote:** liquide vários lançamentos pendentes de uma vez.
+- **Parcelamentos** editáveis parcela a parcela ou na série inteira.
+- Painel com **6 indicadores do mês** (gastos, receitas, saldo, taxa de poupança, lançamentos e ticket médio), cada um comparado com o mês anterior.
+- Análises de fluxo de caixa, tendência por categoria e evolução do patrimônio, além de metas e orçamento com alertas.
+
+### 🔒 Privacidade
+- **Modo sigilo:** esconde todos os valores e gráficos com um clique, para usar em público.
+- Login com Google (Firebase Auth) e regras de segurança no banco por usuário.
+- **Exclusão completa:** ao encerrar a conta, todos os dados são apagados em cascata, em linha com a LGPD.
+- Nenhuma chave no código: tudo por variáveis de ambiente e secrets de build.
 
 ---
 
-## 🚀 Funcionalidades Core (Product Highlights)
+## 🛠️ Como foi construído
 
-### 🤖 Finn IA Preditiva (Native Voice & Vision)
-O núcleo de inteligência do sistema foi desenhado para processamento ultrarrápido sem toque na tela:
-* **Finn Voice:** Integração ponta-a-ponta com Groq Whisper-large-v3 para transcrição e categorização instantânea via comando de voz.
-* **Finn Vision:** Sistema de OCR e filtro de foco que rejeita automaticamente anexos sem relevância financeira.
-* **Contexto Isolado:** Histórico de inferência individualizado por sessão, impossibilitando vazamento de contexto entre conversas.
-
-### 🏢 Arquitetura Multi-Tenant (Multi-Empresa)
-Projetado para usuários que operam múltiplos negócios simultaneamente:
-* **Isolamento de Banco de Dados:** Contas Pessoais, Empresariais e de Projetos rodam em clusters totalmente segregados.
-* **Identidade Dinâmica:** O sistema adapta o UI e renderiza logos (via base64) de acordo com a empresa selecionada ou o domínio da conta bancária.
-* **Replicação Estrutural:** Transferência de categorias e regras de negócio entre bases com um único clique.
-
-### 🔒 Segurança & Stealth Ops
-* **Modo Sigilo (Stealth):** Ocultação em um clique de todos os valores e gráficos sensíveis para operação em ambientes públicos.
-* **Google Identity Sync:** Autenticação avançada e gestão de sessão com Firebase Auth.
-* **Cleanup Recursivo:** Engenharia de banco de dados que garante exclusão em cascata (definitiva) ao encerrar uma conta, atendendo aos mais altos padrões de LGPD.
-
----
-
-## 🛠️ Stack Tecnológica & Engenharia
-
-A arquitetura foi escolhida para garantir **Tempo de Resposta < 200ms**, escalabilidade em nuvem e fluidez nativa mobile.
-
-| Camada | Tecnologia Principal | Descrição Técnica |
+| Camada | Tecnologia | Detalhes |
 | :--- | :--- | :--- |
-| **Front-end Web** | React 19 + Vite 8 | UI componentizada, Tailwind CSS e Lucide Icons. |
-| **Mobile Nativo** | React Native + Expo | SDK 54, UI 100% nativa sem WebViews, animações de 60fps via Animated API. |
-| **Back-end & DB** | Firebase Firestore | NoSQL Serverless com listeners em tempo real e regras de segurança estruturais. |
-| **Inteligência Artificial** | Groq + Gemini | Llama 3.3 70B e Gemini 1.5 Flash operando via Resilient Key Rotation (alta disponibilidade). |
-| **CI/CD & DevOps** | GitHub Actions + EAS | Pipelines automatizados com injeção de changelog no banco de dados e builds OTA (Over-The-Air) para Android. |
+| **Web** | React 19 + Vite 8 + Tailwind CSS | Interface componentizada, ícones Lucide, gráficos interativos |
+| **Android** | React Native 0.81 + Expo SDK 54 | UI 100% nativa (sem WebView), NativeWind, animações no thread nativo |
+| **Dados e login** | Firebase Firestore + Auth | Sincronização em tempo real com listeners, regras de segurança no servidor |
+| **IA** | Groq + Google Gemini | Whisper large-v3 (voz), Llama 3.3 70B (texto), Llama 4 Scout (imagens); Gemini como reserva |
+| **Entrega** | GitHub Actions + Vercel | Cada versão publica a web e grava as notas de versão no próprio banco, para o app mostrar as novidades |
+
+## 📱 Plataformas
+
+| Onde | Como |
+|---|---|
+| **Web** | [caliberda.com.br/kali](https://www.caliberda.com.br/kali) |
+| **Android** | App nativo distribuído por APK, com atualização integrada |
 
 ---
 
 <div align="center">
-  <p class="text-zinc-500">
-    <i>Desenvolvido por Júlio Caliberda.</i><br>
-    <i>Arquiteturas Resolutivas para Problemas Complexos.</i>
-  </p>
+  <sub>Feito por <a href="https://github.com/cesarkali">Júlio Caliberda</a> · <a href="https://portifolio.caliberda.com.br">portfólio</a></sub>
 </div>
